@@ -110,6 +110,7 @@ spring:
   jpa:
     open-in-view: false
     properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
       hibernate.jdbc.time_zone: UTC
       hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
       hibernate.id.new_generator_mappings: true
