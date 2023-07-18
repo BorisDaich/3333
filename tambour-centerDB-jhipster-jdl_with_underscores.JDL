@@ -1,0 +1,234 @@
+application {
+  config {
+    baseName tambour_browser,
+	serverPort 8090,
+	applicationType monolith,
+	authenticationType jwt,
+	blueprints	[],
+	buildTool	maven,
+	cacheProvider caffeine,
+	clientFramework angular,
+	clientPackageManager npm,
+	clientTheme none,
+	
+	// clientThemeVariant
+
+	databaseType sql,
+	
+	enableHibernateCache true,
+	
+	enableSwaggerCodegen false,
+	
+	enableTranslation true,
+	
+//	entitySuffix false,
+	
+	jhiPrefix jhi,
+	languages [en, ru],
+	nativeLanguage en,
+	
+	messageBroker no,
+	
+	packageName	biz.daich.tambour.shlicht,
+	
+	prodDatabaseType mysql,
+	
+	reactive false,
+	searchEngine no,
+	serviceDiscoveryType no,
+	
+	skipClient false,
+	skipServer false,
+	skipUserManagement false,
+	testFrameworks [],
+	websocket no
+  }
+  
+  
+  
+
+  
+  
+entities * 
+
+// Options
+service * with serviceClass
+
+paginate * with infinite-scroll
+
+dto * with mapstruct
+
+filter *
+ 
+}
+
+deployment {
+  deploymentType docker-compose,
+  directoryPath	"../",
+  appsFolders [],
+  monitoring prometheus,
+  serviceDiscoveryType no,
+  
+ // dockerRepositoryName,
+  
+  dockerPushCommand	"docker push"
+  
+  
+  }
+
+entity Batches(batches) {
+    Id String required maxlength(36),
+    PoName String required maxlength(255),
+    SequenceInPo Integer required,
+    ScannerId TextBlob required,
+    PreviousProductionBatchId String maxlength(36),
+    State String required maxlength(16),
+    InspectionSequence Double required unique,
+    OrderedQuantity Integer required,
+    ProducingQuantity Integer required,
+    TotalProducingQuantity Integer required,
+    RemainingQuantity Integer required,
+    TotalremainingQuantity Integer required,
+    InspectedQuantity Integer required,
+    TotalInspectedQuantity Integer required,
+    FailedQuantity Integer required,
+    TotalFailedQuantity Integer required,
+    Color_Id String maxlength(36),
+    Color_Code TextBlob required,
+    Color_Name TextBlob required,
+    Color_Basematerial Long,
+    Color_Lab_L Double,
+    Color_Lab_A Double,
+    Color_Lab_B Double,
+    Color_A Double required,
+    Color_B Double required,
+    Color_C Double required,
+    Color_D Double required,
+    Color_E Double required,
+    Color_F Double required,
+    Color_G Double required,
+    Color_H Double required,
+    Color_I Double required,
+    Color_J Double required,
+    Color_K Double required,
+    Color_L Double required,
+    Color_M Double required,
+    Color_N Double required,
+    Color_O Double required,
+    Color_P Double required,
+    Color_Q Double required,
+    Color_R Double required,
+    Color_S Double required,
+    Color_T Double required,
+    Color_U Double required,
+    Color_V Double required,
+    Color_W Double required,
+    Color_X Double required,
+    Color_Y Double required,
+    Color_Z Double required,
+    Catalog_Id String maxlength(36),
+    Catalog_ExternalId TextBlob required,
+    Catalog_Name TextBlob required,
+    Catalog_Version TextBlob,
+    Catalog_IsActive Boolean required,
+    Catalog_Createdtime Instant,
+    BaseMaterialId Long required,
+    OrderedTime Instant required,
+    StartedTime Instant,
+    ModifiedTime Instant,
+    SuspendedTime Instant,
+    FinishedTime Instant,
+    Original TextBlob
+}
+
+entity CatalogColors(catalogcolors) {
+    Id String required maxlength(36),
+    Code TextBlob required,
+    Name TextBlob required,
+    BaseMaterial Long,
+    Lab_l Double,
+    Lab_a Double,
+    Lab_b Double,
+    A Double required,
+    B Double required,
+    C Double required,
+    D Double required,
+    E Double required,
+    F Double required,
+    G Double required,
+    H Double required,
+    I Double required,
+    J Double required,
+    K Double required,
+    L Double required,
+    M Double required,
+    N Double required,
+    O Double required,
+    P Double required,
+    Q Double required,
+    R Double required,
+    S Double required,
+    T Double required,
+    U Double required,
+    V Double required,
+    W Double required,
+    X Double required,
+    Y Double required,
+    Z Double required
+}
+
+entity Catalogs(catalogs) {
+    Id String required maxlength(36),
+    ExternalId TextBlob required,
+    Name TextBlob required,
+    Version TextBlob,
+    IsActive Boolean required,
+    CreatedTime Instant
+}
+
+entity Images(images) {
+    Id String required maxlength(36),
+    PngContent ImageBlob,
+    RawWidth Integer,
+    RawHeight Integer,
+    RawFormat TextBlob,
+    RawContent Blob
+}
+
+entity Scans(scans) {
+    Id String required maxlength(36),
+    ScannerId TextBlob required,
+    SequenceInBatch Integer required,
+    State String required maxlength(16),
+    dE Double required,
+    CreatedTime Instant required,
+    ScannedTime Instant,
+    InspectedTime Instant,
+    ModifiedTime Instant,
+    EjectedTime Instant
+}
+
+// Relations
+relationship OneToOne {
+    Batches{NextProductionBatch(InspectionSequence)} to Batches{Batches(InspectionSequence)}
+}
+
+relationship ManyToOne {
+    Batches{Color_Catalog} to Catalogs{Batches(InspectionSequence)}
+}
+
+relationship ManyToOne {
+    CatalogColors{Catalog} to Catalogs{CatalogColors}
+}
+
+relationship ManyToOne {
+    Scans{ProductionBatch(InspectionSequence) required} to Batches{scans}
+}
+
+relationship ManyToOne {
+    Scans{image} to Images{scans}
+}
+
+
+
+

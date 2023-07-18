@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="catalogs">
+      <h2 data-cy="catalogsDetailsHeading"><span jhiTranslate="tambourBrowserApp.catalogs.detail.title">Catalogs</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tambourBrowserApp.catalogs.id">Id</span></dt>
+        <dd>
+          <span>{{ catalogs.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.catalogs.externalId">External Id</span></dt>
+        <dd>
+          <span>{{ catalogs.externalId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.catalogs.name">Name</span></dt>
+        <dd>
+          <span>{{ catalogs.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.catalogs.version">Version</span></dt>
+        <dd>
+          <span>{{ catalogs.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.catalogs.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ catalogs.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.catalogs.createdTime">Created Time</span></dt>
+        <dd>
+          <span>{{ catalogs.createdTime | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/catalogs', catalogs.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,278 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="batches">
+      <h2 data-cy="batchesDetailsHeading"><span jhiTranslate="tambourBrowserApp.batches.detail.title">Batches</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tambourBrowserApp.batches.id">Id</span></dt>
+        <dd>
+          <span>{{ batches.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.poName">Po Name</span></dt>
+        <dd>
+          <span>{{ batches.poName }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.sequenceInPo">Sequence In Po</span></dt>
+        <dd>
+          <span>{{ batches.sequenceInPo }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.scannerId">Scanner Id</span></dt>
+        <dd>
+          <span>{{ batches.scannerId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.previousProductionBatchId">Previous Production Batch Id</span></dt>
+        <dd>
+          <span>{{ batches.previousProductionBatchId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.state">State</span></dt>
+        <dd>
+          <span>{{ batches.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.inspectionSequence">Inspection Sequence</span></dt>
+        <dd>
+          <span>{{ batches.inspectionSequence }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.orderedQuantity">Ordered Quantity</span></dt>
+        <dd>
+          <span>{{ batches.orderedQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.producingQuantity">Producing Quantity</span></dt>
+        <dd>
+          <span>{{ batches.producingQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.totalProducingQuantity">Total Producing Quantity</span></dt>
+        <dd>
+          <span>{{ batches.totalProducingQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.remainingQuantity">Remaining Quantity</span></dt>
+        <dd>
+          <span>{{ batches.remainingQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.totalremainingQuantity">Totalremaining Quantity</span></dt>
+        <dd>
+          <span>{{ batches.totalremainingQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.inspectedQuantity">Inspected Quantity</span></dt>
+        <dd>
+          <span>{{ batches.inspectedQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.totalInspectedQuantity">Total Inspected Quantity</span></dt>
+        <dd>
+          <span>{{ batches.totalInspectedQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.failedQuantity">Failed Quantity</span></dt>
+        <dd>
+          <span>{{ batches.failedQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.totalFailedQuantity">Total Failed Quantity</span></dt>
+        <dd>
+          <span>{{ batches.totalFailedQuantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorId">Color Id</span></dt>
+        <dd>
+          <span>{{ batches.colorId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorCode">Color Code</span></dt>
+        <dd>
+          <span>{{ batches.colorCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorName">Color Name</span></dt>
+        <dd>
+          <span>{{ batches.colorName }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorBasematerial">Color Basematerial</span></dt>
+        <dd>
+          <span>{{ batches.colorBasematerial }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorLabL">Color Lab L</span></dt>
+        <dd>
+          <span>{{ batches.colorLabL }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorLabA">Color Lab A</span></dt>
+        <dd>
+          <span>{{ batches.colorLabA }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorLabB">Color Lab B</span></dt>
+        <dd>
+          <span>{{ batches.colorLabB }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorA">Color A</span></dt>
+        <dd>
+          <span>{{ batches.colorA }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorB">Color B</span></dt>
+        <dd>
+          <span>{{ batches.colorB }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorC">Color C</span></dt>
+        <dd>
+          <span>{{ batches.colorC }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorD">Color D</span></dt>
+        <dd>
+          <span>{{ batches.colorD }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorE">Color E</span></dt>
+        <dd>
+          <span>{{ batches.colorE }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorF">Color F</span></dt>
+        <dd>
+          <span>{{ batches.colorF }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorG">Color G</span></dt>
+        <dd>
+          <span>{{ batches.colorG }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorH">Color H</span></dt>
+        <dd>
+          <span>{{ batches.colorH }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorI">Color I</span></dt>
+        <dd>
+          <span>{{ batches.colorI }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorJ">Color J</span></dt>
+        <dd>
+          <span>{{ batches.colorJ }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorK">Color K</span></dt>
+        <dd>
+          <span>{{ batches.colorK }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorL">Color L</span></dt>
+        <dd>
+          <span>{{ batches.colorL }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorM">Color M</span></dt>
+        <dd>
+          <span>{{ batches.colorM }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorN">Color N</span></dt>
+        <dd>
+          <span>{{ batches.colorN }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorO">Color O</span></dt>
+        <dd>
+          <span>{{ batches.colorO }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorP">Color P</span></dt>
+        <dd>
+          <span>{{ batches.colorP }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorQ">Color Q</span></dt>
+        <dd>
+          <span>{{ batches.colorQ }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorR">Color R</span></dt>
+        <dd>
+          <span>{{ batches.colorR }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorS">Color S</span></dt>
+        <dd>
+          <span>{{ batches.colorS }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorT">Color T</span></dt>
+        <dd>
+          <span>{{ batches.colorT }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorU">Color U</span></dt>
+        <dd>
+          <span>{{ batches.colorU }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorV">Color V</span></dt>
+        <dd>
+          <span>{{ batches.colorV }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorW">Color W</span></dt>
+        <dd>
+          <span>{{ batches.colorW }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorX">Color X</span></dt>
+        <dd>
+          <span>{{ batches.colorX }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorY">Color Y</span></dt>
+        <dd>
+          <span>{{ batches.colorY }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorZ">Color Z</span></dt>
+        <dd>
+          <span>{{ batches.colorZ }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.catalogId">Catalog Id</span></dt>
+        <dd>
+          <span>{{ batches.catalogId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.catalogExternalid">Catalog Externalid</span></dt>
+        <dd>
+          <span>{{ batches.catalogExternalid }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.catalogName">Catalog Name</span></dt>
+        <dd>
+          <span>{{ batches.catalogName }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.catalogVersion">Catalog Version</span></dt>
+        <dd>
+          <span>{{ batches.catalogVersion }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.catalogIsactive">Catalog Isactive</span></dt>
+        <dd>
+          <span>{{ batches.catalogIsactive }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.catalogCreatedtime">Catalog Createdtime</span></dt>
+        <dd>
+          <span>{{ batches.catalogCreatedtime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.baseMaterialId">Base Material Id</span></dt>
+        <dd>
+          <span>{{ batches.baseMaterialId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.orderedTime">Ordered Time</span></dt>
+        <dd>
+          <span>{{ batches.orderedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.startedTime">Started Time</span></dt>
+        <dd>
+          <span>{{ batches.startedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.modifiedTime">Modified Time</span></dt>
+        <dd>
+          <span>{{ batches.modifiedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.suspendedTime">Suspended Time</span></dt>
+        <dd>
+          <span>{{ batches.suspendedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.finishedTime">Finished Time</span></dt>
+        <dd>
+          <span>{{ batches.finishedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.original">Original</span></dt>
+        <dd>
+          <span>{{ batches.original }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.batches.colorCatalog">Color Catalog</span></dt>
+        <dd>
+          <div *ngIf="batches.colorCatalog">
+            <a [routerLink]="['/catalogs', batches.colorCatalog.id, 'view']">{{ batches.colorCatalog.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/batches', batches.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "tambourBrowserApp": {
+    "images": {
+      "home": {
+        "title": "Images",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Images",
+        "createOrEditLabel": "Создать или отредактировать Images",
+        "notFound": "Images не найдено"
+      },
+      "created": "Новый Images создан с идентификатором {{ param }}",
+      "updated": "Images обновлен с идентификатором {{ param }}",
+      "deleted": "Images удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Images {{ id }}?"
+      },
+      "detail": {
+        "title": "Images"
+      },
+      "id": "Id",
+      "pngContent": "Png Content",
+      "rawWidth": "Raw Width",
+      "rawHeight": "Raw Height",
+      "rawFormat": "Raw Format",
+      "rawContent": "Raw Content",
+      "id": "Id"
+    }
+  }
+}

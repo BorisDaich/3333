@@ -1,0 +1,51 @@
+{
+  "applications": ["tambour_browser"],
+  "changelogDate": "20230718090123",
+  "dto": "mapstruct",
+  "entityTableName": "images",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "36"
+    },
+    {
+      "fieldName": "pngContent",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "rawWidth",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rawHeight",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rawFormat",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "rawContent",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Images",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "scans",
+      "otherEntityRelationshipName": "image",
+      "relationshipName": "id",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

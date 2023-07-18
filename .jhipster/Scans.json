@@ -1,0 +1,78 @@
+{
+  "applications": ["tambour_browser"],
+  "changelogDate": "20230718090124",
+  "dto": "mapstruct",
+  "entityTableName": "scans",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "36"
+    },
+    {
+      "fieldName": "scannerId",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sequenceInBatch",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "16"
+    },
+    {
+      "fieldName": "dE",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdTime",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "scannedTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "inspectedTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "modifiedTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ejectedTime",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Scans",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "images",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "image",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "batches",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "productionBatch",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

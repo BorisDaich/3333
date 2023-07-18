@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="scans">
+      <h2 data-cy="scansDetailsHeading"><span jhiTranslate="tambourBrowserApp.scans.detail.title">Scans</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tambourBrowserApp.scans.id">Id</span></dt>
+        <dd>
+          <span>{{ scans.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.scannerId">Scanner Id</span></dt>
+        <dd>
+          <span>{{ scans.scannerId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.sequenceInBatch">Sequence In Batch</span></dt>
+        <dd>
+          <span>{{ scans.sequenceInBatch }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.state">State</span></dt>
+        <dd>
+          <span>{{ scans.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.dE">D E</span></dt>
+        <dd>
+          <span>{{ scans.dE }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.createdTime">Created Time</span></dt>
+        <dd>
+          <span>{{ scans.createdTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.scannedTime">Scanned Time</span></dt>
+        <dd>
+          <span>{{ scans.scannedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.inspectedTime">Inspected Time</span></dt>
+        <dd>
+          <span>{{ scans.inspectedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.modifiedTime">Modified Time</span></dt>
+        <dd>
+          <span>{{ scans.modifiedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.ejectedTime">Ejected Time</span></dt>
+        <dd>
+          <span>{{ scans.ejectedTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.image">Image</span></dt>
+        <dd>
+          <div *ngIf="scans.image">
+            <a [routerLink]="['/images', scans.image.id, 'view']">{{ scans.image.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.scans.productionBatch">Production Batch</span></dt>
+        <dd>
+          <div *ngIf="scans.productionBatch">
+            <a [routerLink]="['/batches', scans.productionBatch.id, 'view']">{{ scans.productionBatch.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/scans', scans.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,461 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-catalogcolors-heading"
+        data-cy="CatalogcolorsCreateUpdateHeading"
+        jhiTranslate="tambourBrowserApp.catalogcolors.home.createOrEditLabel"
+      >
+        Create or edit a Catalogcolors
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.id" for="field_id">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="editForm.get('id')!.value != null"
+          />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('id')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 36 }"
+            >
+              This field cannot be longer than 36 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.code" for="field_code">Code</label>
+          <textarea class="form-control" name="code" id="field_code" data-cy="code" formControlName="code"></textarea>
+          <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('code')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.name" for="field_name">Name</label>
+          <textarea class="form-control" name="name" id="field_name" data-cy="name" formControlName="name"></textarea>
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.baseMaterial" for="field_baseMaterial"
+            >Base Material</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="baseMaterial"
+            id="field_baseMaterial"
+            data-cy="baseMaterial"
+            formControlName="baseMaterial"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.labL" for="field_labL">Lab L</label>
+          <input type="number" class="form-control" name="labL" id="field_labL" data-cy="labL" formControlName="labL" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.labA" for="field_labA">Lab A</label>
+          <input type="number" class="form-control" name="labA" id="field_labA" data-cy="labA" formControlName="labA" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.labB" for="field_labB">Lab B</label>
+          <input type="number" class="form-control" name="labB" id="field_labB" data-cy="labB" formControlName="labB" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.a" for="field_a">A</label>
+          <input type="number" class="form-control" name="a" id="field_a" data-cy="a" formControlName="a" />
+          <div *ngIf="editForm.get('a')!.invalid && (editForm.get('a')!.dirty || editForm.get('a')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('a')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('a')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.b" for="field_b">B</label>
+          <input type="number" class="form-control" name="b" id="field_b" data-cy="b" formControlName="b" />
+          <div *ngIf="editForm.get('b')!.invalid && (editForm.get('b')!.dirty || editForm.get('b')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('b')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('b')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.c" for="field_c">C</label>
+          <input type="number" class="form-control" name="c" id="field_c" data-cy="c" formControlName="c" />
+          <div *ngIf="editForm.get('c')!.invalid && (editForm.get('c')!.dirty || editForm.get('c')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('c')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('c')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.d" for="field_d">D</label>
+          <input type="number" class="form-control" name="d" id="field_d" data-cy="d" formControlName="d" />
+          <div *ngIf="editForm.get('d')!.invalid && (editForm.get('d')!.dirty || editForm.get('d')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('d')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('d')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.e" for="field_e">E</label>
+          <input type="number" class="form-control" name="e" id="field_e" data-cy="e" formControlName="e" />
+          <div *ngIf="editForm.get('e')!.invalid && (editForm.get('e')!.dirty || editForm.get('e')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('e')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('e')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.f" for="field_f">F</label>
+          <input type="number" class="form-control" name="f" id="field_f" data-cy="f" formControlName="f" />
+          <div *ngIf="editForm.get('f')!.invalid && (editForm.get('f')!.dirty || editForm.get('f')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('f')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('f')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.g" for="field_g">G</label>
+          <input type="number" class="form-control" name="g" id="field_g" data-cy="g" formControlName="g" />
+          <div *ngIf="editForm.get('g')!.invalid && (editForm.get('g')!.dirty || editForm.get('g')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('g')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('g')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.h" for="field_h">H</label>
+          <input type="number" class="form-control" name="h" id="field_h" data-cy="h" formControlName="h" />
+          <div *ngIf="editForm.get('h')!.invalid && (editForm.get('h')!.dirty || editForm.get('h')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('h')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('h')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.i" for="field_i">I</label>
+          <input type="number" class="form-control" name="i" id="field_i" data-cy="i" formControlName="i" />
+          <div *ngIf="editForm.get('i')!.invalid && (editForm.get('i')!.dirty || editForm.get('i')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('i')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('i')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.j" for="field_j">J</label>
+          <input type="number" class="form-control" name="j" id="field_j" data-cy="j" formControlName="j" />
+          <div *ngIf="editForm.get('j')!.invalid && (editForm.get('j')!.dirty || editForm.get('j')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('j')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('j')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.k" for="field_k">K</label>
+          <input type="number" class="form-control" name="k" id="field_k" data-cy="k" formControlName="k" />
+          <div *ngIf="editForm.get('k')!.invalid && (editForm.get('k')!.dirty || editForm.get('k')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('k')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('k')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.l" for="field_l">L</label>
+          <input type="number" class="form-control" name="l" id="field_l" data-cy="l" formControlName="l" />
+          <div *ngIf="editForm.get('l')!.invalid && (editForm.get('l')!.dirty || editForm.get('l')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('l')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('l')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.m" for="field_m">M</label>
+          <input type="number" class="form-control" name="m" id="field_m" data-cy="m" formControlName="m" />
+          <div *ngIf="editForm.get('m')!.invalid && (editForm.get('m')!.dirty || editForm.get('m')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('m')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('m')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.n" for="field_n">N</label>
+          <input type="number" class="form-control" name="n" id="field_n" data-cy="n" formControlName="n" />
+          <div *ngIf="editForm.get('n')!.invalid && (editForm.get('n')!.dirty || editForm.get('n')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('n')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('n')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.o" for="field_o">O</label>
+          <input type="number" class="form-control" name="o" id="field_o" data-cy="o" formControlName="o" />
+          <div *ngIf="editForm.get('o')!.invalid && (editForm.get('o')!.dirty || editForm.get('o')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('o')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('o')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.p" for="field_p">P</label>
+          <input type="number" class="form-control" name="p" id="field_p" data-cy="p" formControlName="p" />
+          <div *ngIf="editForm.get('p')!.invalid && (editForm.get('p')!.dirty || editForm.get('p')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('p')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('p')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.q" for="field_q">Q</label>
+          <input type="number" class="form-control" name="q" id="field_q" data-cy="q" formControlName="q" />
+          <div *ngIf="editForm.get('q')!.invalid && (editForm.get('q')!.dirty || editForm.get('q')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('q')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('q')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.r" for="field_r">R</label>
+          <input type="number" class="form-control" name="r" id="field_r" data-cy="r" formControlName="r" />
+          <div *ngIf="editForm.get('r')!.invalid && (editForm.get('r')!.dirty || editForm.get('r')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('r')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('r')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.s" for="field_s">S</label>
+          <input type="number" class="form-control" name="s" id="field_s" data-cy="s" formControlName="s" />
+          <div *ngIf="editForm.get('s')!.invalid && (editForm.get('s')!.dirty || editForm.get('s')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('s')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('s')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.t" for="field_t">T</label>
+          <input type="number" class="form-control" name="t" id="field_t" data-cy="t" formControlName="t" />
+          <div *ngIf="editForm.get('t')!.invalid && (editForm.get('t')!.dirty || editForm.get('t')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('t')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('t')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.u" for="field_u">U</label>
+          <input type="number" class="form-control" name="u" id="field_u" data-cy="u" formControlName="u" />
+          <div *ngIf="editForm.get('u')!.invalid && (editForm.get('u')!.dirty || editForm.get('u')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('u')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('u')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.v" for="field_v">V</label>
+          <input type="number" class="form-control" name="v" id="field_v" data-cy="v" formControlName="v" />
+          <div *ngIf="editForm.get('v')!.invalid && (editForm.get('v')!.dirty || editForm.get('v')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('v')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('v')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.w" for="field_w">W</label>
+          <input type="number" class="form-control" name="w" id="field_w" data-cy="w" formControlName="w" />
+          <div *ngIf="editForm.get('w')!.invalid && (editForm.get('w')!.dirty || editForm.get('w')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('w')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('w')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.x" for="field_x">X</label>
+          <input type="number" class="form-control" name="x" id="field_x" data-cy="x" formControlName="x" />
+          <div *ngIf="editForm.get('x')!.invalid && (editForm.get('x')!.dirty || editForm.get('x')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('x')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('x')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.y" for="field_y">Y</label>
+          <input type="number" class="form-control" name="y" id="field_y" data-cy="y" formControlName="y" />
+          <div *ngIf="editForm.get('y')!.invalid && (editForm.get('y')!.dirty || editForm.get('y')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('y')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('y')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.z" for="field_z">Z</label>
+          <input type="number" class="form-control" name="z" id="field_z" data-cy="z" formControlName="z" />
+          <div *ngIf="editForm.get('z')!.invalid && (editForm.get('z')!.dirty || editForm.get('z')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('z')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('z')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.catalogcolors.catalog" for="field_catalog">Catalog</label>
+          <select
+            class="form-control"
+            id="field_catalog"
+            data-cy="catalog"
+            name="catalog"
+            formControlName="catalog"
+            [compareWith]="compareCatalogs"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="catalogsOption" *ngFor="let catalogsOption of catalogsSharedCollection">{{ catalogsOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

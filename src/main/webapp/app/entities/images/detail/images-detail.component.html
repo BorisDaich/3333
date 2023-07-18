@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="images">
+      <h2 data-cy="imagesDetailsHeading"><span jhiTranslate="tambourBrowserApp.images.detail.title">Images</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tambourBrowserApp.images.id">Id</span></dt>
+        <dd>
+          <span>{{ images.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.images.pngContent">Png Content</span></dt>
+        <dd>
+          <div *ngIf="images.pngContent">
+            <a (click)="openFile(images.pngContent, images.pngContentContentType)">
+              <img
+                [src]="'data:' + images.pngContentContentType + ';base64,' + images.pngContent"
+                style="max-width: 100%"
+                alt="images image"
+              />
+            </a>
+            {{ images.pngContentContentType }}, {{ byteSize(images.pngContent) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.images.rawWidth">Raw Width</span></dt>
+        <dd>
+          <span>{{ images.rawWidth }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.images.rawHeight">Raw Height</span></dt>
+        <dd>
+          <span>{{ images.rawHeight }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.images.rawFormat">Raw Format</span></dt>
+        <dd>
+          <span>{{ images.rawFormat }}</span>
+        </dd>
+        <dt><span jhiTranslate="tambourBrowserApp.images.rawContent">Raw Content</span></dt>
+        <dd>
+          <div *ngIf="images.rawContent">
+            <a (click)="openFile(images.rawContent, images.rawContentContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ images.rawContentContentType }}, {{ byteSize(images.rawContent) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/images', images.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

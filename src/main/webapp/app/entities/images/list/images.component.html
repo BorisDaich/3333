@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="ImagesHeading">
+    <span jhiTranslate="tambourBrowserApp.images.home.title">Images</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.images.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-images"
+        [routerLink]="['/images/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.images.home.createLabel"> Create a new Images </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="images?.length === 0">
+    <span jhiTranslate="tambourBrowserApp.images.home.notFound">No Images found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="images && images.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.images.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pngContent">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.images.pngContent">Png Content</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rawWidth">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.images.rawWidth">Raw Width</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rawHeight">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.images.rawHeight">Raw Height</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rawFormat">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.images.rawFormat">Raw Format</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rawContent">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.images.rawContent">Raw Content</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let images of images; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/images', images.id, 'view']">{{ images.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="images.pngContent" (click)="openFile(images.pngContent, images.pngContentContentType)">
+              <img
+                [src]="'data:' + images.pngContentContentType + ';base64,' + images.pngContent"
+                style="max-height: 30px"
+                alt="images image"
+              />
+            </a>
+            <span *ngIf="images.pngContent">{{ images.pngContentContentType }}, {{ byteSize(images.pngContent) }}</span>
+          </td>
+          <td>{{ images.rawWidth }}</td>
+          <td>{{ images.rawHeight }}</td>
+          <td>{{ images.rawFormat }}</td>
+          <td>
+            <a
+              *ngIf="images.rawContent"
+              (click)="openFile(images.rawContent, images.rawContentContentType)"
+              jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            <span *ngIf="images.rawContent">{{ images.rawContentContentType }}, {{ byteSize(images.rawContent) }}</span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/images', images.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/images', images.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(images)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

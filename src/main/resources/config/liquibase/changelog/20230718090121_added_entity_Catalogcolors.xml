@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Catalogcolors.
+    -->
+    <changeSet id="20230718090121-1" author="jhipster">
+        <createTable tableName="catalogcolors">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="code" type="${clobType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="${clobType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="base_material" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="lab_l" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="lab_a" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="lab_b" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="a" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="b" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="c" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="d" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="e" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="f" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="g" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="h" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="i" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="j" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="k" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="l" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="m" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="n" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="o" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="p" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="q" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="r" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="s" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="t" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="u" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="v" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="w" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="x" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="y" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="z" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="catalog_id" type="varchar(36)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20230718090121-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/catalogcolors.csv"
+                  separator=";"
+                  tableName="catalogcolors"
+                  usePreparedStatements="true">
+            <column name="id" type="string"/>
+            <column name="code" type="clob"/>
+            <column name="name" type="clob"/>
+            <column name="base_material" type="numeric"/>
+            <column name="lab_l" type="numeric"/>
+            <column name="lab_a" type="numeric"/>
+            <column name="lab_b" type="numeric"/>
+            <column name="a" type="numeric"/>
+            <column name="b" type="numeric"/>
+            <column name="c" type="numeric"/>
+            <column name="d" type="numeric"/>
+            <column name="e" type="numeric"/>
+            <column name="f" type="numeric"/>
+            <column name="g" type="numeric"/>
+            <column name="h" type="numeric"/>
+            <column name="i" type="numeric"/>
+            <column name="j" type="numeric"/>
+            <column name="k" type="numeric"/>
+            <column name="l" type="numeric"/>
+            <column name="m" type="numeric"/>
+            <column name="n" type="numeric"/>
+            <column name="o" type="numeric"/>
+            <column name="p" type="numeric"/>
+            <column name="q" type="numeric"/>
+            <column name="r" type="numeric"/>
+            <column name="s" type="numeric"/>
+            <column name="t" type="numeric"/>
+            <column name="u" type="numeric"/>
+            <column name="v" type="numeric"/>
+            <column name="w" type="numeric"/>
+            <column name="x" type="numeric"/>
+            <column name="y" type="numeric"/>
+            <column name="z" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

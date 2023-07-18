@@ -1,0 +1,121 @@
+<div>
+  <h2 id="page-heading" data-cy="CatalogsHeading">
+    <span jhiTranslate="tambourBrowserApp.catalogs.home.title">Catalogs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.catalogs.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-catalogs"
+        [routerLink]="['/catalogs/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.catalogs.home.createLabel"> Create a new Catalogs </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="catalogs?.length === 0">
+    <span jhiTranslate="tambourBrowserApp.catalogs.home.notFound">No Catalogs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="catalogs && catalogs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogs.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="externalId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogs.externalId">External Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogs.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="version">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogs.version">Version</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogs.isActive">Is Active</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogs.createdTime">Created Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let catalogs of catalogs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/catalogs', catalogs.id, 'view']">{{ catalogs.id }}</a>
+          </td>
+          <td>{{ catalogs.externalId }}</td>
+          <td>{{ catalogs.name }}</td>
+          <td>{{ catalogs.version }}</td>
+          <td>{{ catalogs.isActive }}</td>
+          <td>{{ catalogs.createdTime | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/catalogs', catalogs.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/catalogs', catalogs.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(catalogs)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

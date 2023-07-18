@@ -1,0 +1,321 @@
+<div>
+  <h2 id="page-heading" data-cy="CatalogcolorsHeading">
+    <span jhiTranslate="tambourBrowserApp.catalogcolors.home.title">Catalogcolors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.catalogcolors.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-catalogcolors"
+        [routerLink]="['/catalogcolors/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.catalogcolors.home.createLabel"> Create a new Catalogcolors </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="catalogcolors?.length === 0">
+    <span jhiTranslate="tambourBrowserApp.catalogcolors.home.notFound">No Catalogcolors found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="catalogcolors && catalogcolors.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="code">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.code">Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="baseMaterial">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.baseMaterial">Base Material</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="labL">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.labL">Lab L</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="labA">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.labA">Lab A</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="labB">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.labB">Lab B</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="a">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.a">A</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="b">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.b">B</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="c">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.c">C</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="d">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.d">D</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="e">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.e">E</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="f">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.f">F</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="g">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.g">G</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="h">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.h">H</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="i">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.i">I</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="j">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.j">J</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="k">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.k">K</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="l">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.l">L</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="m">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.m">M</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="n">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.n">N</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="o">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.o">O</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="p">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.p">P</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="q">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.q">Q</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="r">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.r">R</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="s">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.s">S</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="t">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.t">T</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="u">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.u">U</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="v">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.v">V</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="w">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.w">W</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="x">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.x">X</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="y">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.y">Y</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="z">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.z">Z</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalog.id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.catalogcolors.catalog">Catalog</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let catalogcolors of catalogcolors; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/catalogcolors', catalogcolors.id, 'view']">{{ catalogcolors.id }}</a>
+          </td>
+          <td>{{ catalogcolors.code }}</td>
+          <td>{{ catalogcolors.name }}</td>
+          <td>{{ catalogcolors.baseMaterial }}</td>
+          <td>{{ catalogcolors.labL }}</td>
+          <td>{{ catalogcolors.labA }}</td>
+          <td>{{ catalogcolors.labB }}</td>
+          <td>{{ catalogcolors.a }}</td>
+          <td>{{ catalogcolors.b }}</td>
+          <td>{{ catalogcolors.c }}</td>
+          <td>{{ catalogcolors.d }}</td>
+          <td>{{ catalogcolors.e }}</td>
+          <td>{{ catalogcolors.f }}</td>
+          <td>{{ catalogcolors.g }}</td>
+          <td>{{ catalogcolors.h }}</td>
+          <td>{{ catalogcolors.i }}</td>
+          <td>{{ catalogcolors.j }}</td>
+          <td>{{ catalogcolors.k }}</td>
+          <td>{{ catalogcolors.l }}</td>
+          <td>{{ catalogcolors.m }}</td>
+          <td>{{ catalogcolors.n }}</td>
+          <td>{{ catalogcolors.o }}</td>
+          <td>{{ catalogcolors.p }}</td>
+          <td>{{ catalogcolors.q }}</td>
+          <td>{{ catalogcolors.r }}</td>
+          <td>{{ catalogcolors.s }}</td>
+          <td>{{ catalogcolors.t }}</td>
+          <td>{{ catalogcolors.u }}</td>
+          <td>{{ catalogcolors.v }}</td>
+          <td>{{ catalogcolors.w }}</td>
+          <td>{{ catalogcolors.x }}</td>
+          <td>{{ catalogcolors.y }}</td>
+          <td>{{ catalogcolors.z }}</td>
+          <td>
+            <div *ngIf="catalogcolors.catalog">
+              <a [routerLink]="['/catalogs', catalogcolors.catalog.id, 'view']">{{ catalogcolors.catalog.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/catalogcolors', catalogcolors.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/catalogcolors', catalogcolors.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(catalogcolors)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

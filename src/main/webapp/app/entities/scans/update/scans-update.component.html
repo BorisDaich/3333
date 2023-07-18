@@ -1,0 +1,251 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-scans-heading" data-cy="ScansCreateUpdateHeading" jhiTranslate="tambourBrowserApp.scans.home.createOrEditLabel">
+        Create or edit a Scans
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.id" for="field_id">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="editForm.get('id')!.value != null"
+          />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('id')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 36 }"
+            >
+              This field cannot be longer than 36 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.scannerId" for="field_scannerId">Scanner Id</label>
+          <textarea class="form-control" name="scannerId" id="field_scannerId" data-cy="scannerId" formControlName="scannerId"></textarea>
+          <div *ngIf="editForm.get('scannerId')!.invalid && (editForm.get('scannerId')!.dirty || editForm.get('scannerId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('scannerId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.sequenceInBatch" for="field_sequenceInBatch"
+            >Sequence In Batch</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="sequenceInBatch"
+            id="field_sequenceInBatch"
+            data-cy="sequenceInBatch"
+            formControlName="sequenceInBatch"
+          />
+          <div
+            *ngIf="
+              editForm.get('sequenceInBatch')!.invalid &&
+              (editForm.get('sequenceInBatch')!.dirty || editForm.get('sequenceInBatch')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sequenceInBatch')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('sequenceInBatch')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.state" for="field_state">State</label>
+          <input type="text" class="form-control" name="state" id="field_state" data-cy="state" formControlName="state" />
+          <div *ngIf="editForm.get('state')!.invalid && (editForm.get('state')!.dirty || editForm.get('state')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('state')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('state')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 16 }"
+            >
+              This field cannot be longer than 16 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.dE" for="field_dE">D E</label>
+          <input type="number" class="form-control" name="dE" id="field_dE" data-cy="dE" formControlName="dE" />
+          <div *ngIf="editForm.get('dE')!.invalid && (editForm.get('dE')!.dirty || editForm.get('dE')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('dE')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('dE')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.createdTime" for="field_createdTime">Created Time</label>
+          <div class="d-flex">
+            <input
+              id="field_createdTime"
+              data-cy="createdTime"
+              type="datetime-local"
+              class="form-control"
+              name="createdTime"
+              formControlName="createdTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdTime')!.invalid && (editForm.get('createdTime')!.dirty || editForm.get('createdTime')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdTime')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.scannedTime" for="field_scannedTime">Scanned Time</label>
+          <div class="d-flex">
+            <input
+              id="field_scannedTime"
+              data-cy="scannedTime"
+              type="datetime-local"
+              class="form-control"
+              name="scannedTime"
+              formControlName="scannedTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.inspectedTime" for="field_inspectedTime">Inspected Time</label>
+          <div class="d-flex">
+            <input
+              id="field_inspectedTime"
+              data-cy="inspectedTime"
+              type="datetime-local"
+              class="form-control"
+              name="inspectedTime"
+              formControlName="inspectedTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.modifiedTime" for="field_modifiedTime">Modified Time</label>
+          <div class="d-flex">
+            <input
+              id="field_modifiedTime"
+              data-cy="modifiedTime"
+              type="datetime-local"
+              class="form-control"
+              name="modifiedTime"
+              formControlName="modifiedTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.ejectedTime" for="field_ejectedTime">Ejected Time</label>
+          <div class="d-flex">
+            <input
+              id="field_ejectedTime"
+              data-cy="ejectedTime"
+              type="datetime-local"
+              class="form-control"
+              name="ejectedTime"
+              formControlName="ejectedTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.image" for="field_image">Image</label>
+          <select class="form-control" id="field_image" data-cy="image" name="image" formControlName="image" [compareWith]="compareImages">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="imagesOption" *ngFor="let imagesOption of imagesCollection">{{ imagesOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="tambourBrowserApp.scans.productionBatch" for="field_productionBatch"
+            >Production Batch</label
+          >
+          <select
+            class="form-control"
+            id="field_productionBatch"
+            data-cy="productionBatch"
+            name="productionBatch"
+            formControlName="productionBatch"
+            [compareWith]="compareBatches"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="batchesOption" *ngFor="let batchesOption of batchesSharedCollection">{{ batchesOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

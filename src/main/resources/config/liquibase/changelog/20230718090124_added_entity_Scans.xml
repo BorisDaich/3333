@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Scans.
+    -->
+    <changeSet id="20230718090124-1" author="jhipster">
+        <createTable tableName="scans">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="scanner_id" type="${clobType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="sequence_in_batch" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="state" type="varchar(16)">
+                <constraints nullable="false" />
+            </column>
+            <column name="d_e" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_time" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="scanned_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="inspected_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="modified_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="ejected_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="image_id" type="varchar(36)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_scans__image_id" />
+            </column>
+            <column name="production_batch_id" type="varchar(36)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="scans" columnName="created_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="scans" columnName="scanned_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="scans" columnName="inspected_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="scans" columnName="modified_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="scans" columnName="ejected_time" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20230718090124-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/scans.csv"
+                  separator=";"
+                  tableName="scans"
+                  usePreparedStatements="true">
+            <column name="id" type="string"/>
+            <column name="scanner_id" type="clob"/>
+            <column name="sequence_in_batch" type="numeric"/>
+            <column name="state" type="string"/>
+            <column name="d_e" type="numeric"/>
+            <column name="created_time" type="date"/>
+            <column name="scanned_time" type="date"/>
+            <column name="inspected_time" type="date"/>
+            <column name="modified_time" type="date"/>
+            <column name="ejected_time" type="date"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

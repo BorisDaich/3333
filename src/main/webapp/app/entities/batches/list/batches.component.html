@@ -1,0 +1,524 @@
+<div>
+  <h2 id="page-heading" data-cy="BatchesHeading">
+    <span jhiTranslate="tambourBrowserApp.batches.home.title">Batches</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.batches.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-batches"
+        [routerLink]="['/batches/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.batches.home.createLabel"> Create a new Batches </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="batches?.length === 0">
+    <span jhiTranslate="tambourBrowserApp.batches.home.notFound">No Batches found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="batches && batches.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="poName">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.poName">Po Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sequenceInPo">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.sequenceInPo">Sequence In Po</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="scannerId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.scannerId">Scanner Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="previousProductionBatchId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.previousProductionBatchId">Previous Production Batch Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.state">State</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="inspectionSequence">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.inspectionSequence">Inspection Sequence</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderedQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.orderedQuantity">Ordered Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="producingQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.producingQuantity">Producing Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalProducingQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.totalProducingQuantity">Total Producing Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="remainingQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.remainingQuantity">Remaining Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalremainingQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.totalremainingQuantity">Totalremaining Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="inspectedQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.inspectedQuantity">Inspected Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalInspectedQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.totalInspectedQuantity">Total Inspected Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="failedQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.failedQuantity">Failed Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalFailedQuantity">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.totalFailedQuantity">Total Failed Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorId">Color Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorCode">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorCode">Color Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorName">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorName">Color Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorBasematerial">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorBasematerial">Color Basematerial</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorLabL">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorLabL">Color Lab L</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorLabA">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorLabA">Color Lab A</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorLabB">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorLabB">Color Lab B</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorA">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorA">Color A</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorB">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorB">Color B</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorC">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorC">Color C</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorD">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorD">Color D</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorE">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorE">Color E</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorF">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorF">Color F</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorG">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorG">Color G</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorH">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorH">Color H</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorI">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorI">Color I</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorJ">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorJ">Color J</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorK">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorK">Color K</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorL">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorL">Color L</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorM">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorM">Color M</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorN">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorN">Color N</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorO">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorO">Color O</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorP">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorP">Color P</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorQ">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorQ">Color Q</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorR">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorR">Color R</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorS">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorS">Color S</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorT">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorT">Color T</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorU">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorU">Color U</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorV">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorV">Color V</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorW">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorW">Color W</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorX">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorX">Color X</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorY">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorY">Color Y</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorZ">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorZ">Color Z</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalogId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.catalogId">Catalog Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalogExternalid">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.catalogExternalid">Catalog Externalid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalogName">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.catalogName">Catalog Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalogVersion">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.catalogVersion">Catalog Version</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalogIsactive">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.catalogIsactive">Catalog Isactive</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="catalogCreatedtime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.catalogCreatedtime">Catalog Createdtime</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="baseMaterialId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.baseMaterialId">Base Material Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.orderedTime">Ordered Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.startedTime">Started Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="modifiedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.modifiedTime">Modified Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="suspendedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.suspendedTime">Suspended Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="finishedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.finishedTime">Finished Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="original">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.original">Original</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="colorCatalog.id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.batches.colorCatalog">Color Catalog</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let batches of batches; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/batches', batches.id, 'view']">{{ batches.id }}</a>
+          </td>
+          <td>{{ batches.poName }}</td>
+          <td>{{ batches.sequenceInPo }}</td>
+          <td>{{ batches.scannerId }}</td>
+          <td>{{ batches.previousProductionBatchId }}</td>
+          <td>{{ batches.state }}</td>
+          <td>{{ batches.inspectionSequence }}</td>
+          <td>{{ batches.orderedQuantity }}</td>
+          <td>{{ batches.producingQuantity }}</td>
+          <td>{{ batches.totalProducingQuantity }}</td>
+          <td>{{ batches.remainingQuantity }}</td>
+          <td>{{ batches.totalremainingQuantity }}</td>
+          <td>{{ batches.inspectedQuantity }}</td>
+          <td>{{ batches.totalInspectedQuantity }}</td>
+          <td>{{ batches.failedQuantity }}</td>
+          <td>{{ batches.totalFailedQuantity }}</td>
+          <td>{{ batches.colorId }}</td>
+          <td>{{ batches.colorCode }}</td>
+          <td>{{ batches.colorName }}</td>
+          <td>{{ batches.colorBasematerial }}</td>
+          <td>{{ batches.colorLabL }}</td>
+          <td>{{ batches.colorLabA }}</td>
+          <td>{{ batches.colorLabB }}</td>
+          <td>{{ batches.colorA }}</td>
+          <td>{{ batches.colorB }}</td>
+          <td>{{ batches.colorC }}</td>
+          <td>{{ batches.colorD }}</td>
+          <td>{{ batches.colorE }}</td>
+          <td>{{ batches.colorF }}</td>
+          <td>{{ batches.colorG }}</td>
+          <td>{{ batches.colorH }}</td>
+          <td>{{ batches.colorI }}</td>
+          <td>{{ batches.colorJ }}</td>
+          <td>{{ batches.colorK }}</td>
+          <td>{{ batches.colorL }}</td>
+          <td>{{ batches.colorM }}</td>
+          <td>{{ batches.colorN }}</td>
+          <td>{{ batches.colorO }}</td>
+          <td>{{ batches.colorP }}</td>
+          <td>{{ batches.colorQ }}</td>
+          <td>{{ batches.colorR }}</td>
+          <td>{{ batches.colorS }}</td>
+          <td>{{ batches.colorT }}</td>
+          <td>{{ batches.colorU }}</td>
+          <td>{{ batches.colorV }}</td>
+          <td>{{ batches.colorW }}</td>
+          <td>{{ batches.colorX }}</td>
+          <td>{{ batches.colorY }}</td>
+          <td>{{ batches.colorZ }}</td>
+          <td>{{ batches.catalogId }}</td>
+          <td>{{ batches.catalogExternalid }}</td>
+          <td>{{ batches.catalogName }}</td>
+          <td>{{ batches.catalogVersion }}</td>
+          <td>{{ batches.catalogIsactive }}</td>
+          <td>{{ batches.catalogCreatedtime | formatMediumDatetime }}</td>
+          <td>{{ batches.baseMaterialId }}</td>
+          <td>{{ batches.orderedTime | formatMediumDatetime }}</td>
+          <td>{{ batches.startedTime | formatMediumDatetime }}</td>
+          <td>{{ batches.modifiedTime | formatMediumDatetime }}</td>
+          <td>{{ batches.suspendedTime | formatMediumDatetime }}</td>
+          <td>{{ batches.finishedTime | formatMediumDatetime }}</td>
+          <td>{{ batches.original }}</td>
+          <td>
+            <div *ngIf="batches.colorCatalog">
+              <a [routerLink]="['/catalogs', batches.colorCatalog.id, 'view']">{{ batches.colorCatalog.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/batches', batches.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/batches', batches.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(batches)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

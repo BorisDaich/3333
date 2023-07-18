@@ -1,0 +1,56 @@
+{
+  "tambourBrowserApp": {
+    "catalogcolors": {
+      "home": {
+        "title": "Catalogcolors",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Catalogcolors",
+        "createOrEditLabel": "Создать или отредактировать Catalogcolors",
+        "notFound": "Catalogcolors не найдено"
+      },
+      "created": "Новый Catalogcolors создан с идентификатором {{ param }}",
+      "updated": "Catalogcolors обновлен с идентификатором {{ param }}",
+      "deleted": "Catalogcolors удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Catalogcolors {{ id }}?"
+      },
+      "detail": {
+        "title": "Catalogcolors"
+      },
+      "id": "Id",
+      "code": "Code",
+      "name": "Name",
+      "baseMaterial": "Base Material",
+      "labL": "Lab L",
+      "labA": "Lab A",
+      "labB": "Lab B",
+      "a": "A",
+      "b": "B",
+      "c": "C",
+      "d": "D",
+      "e": "E",
+      "f": "F",
+      "g": "G",
+      "h": "H",
+      "i": "I",
+      "j": "J",
+      "k": "K",
+      "l": "L",
+      "m": "M",
+      "n": "N",
+      "o": "O",
+      "p": "P",
+      "q": "Q",
+      "r": "R",
+      "s": "S",
+      "t": "T",
+      "u": "U",
+      "v": "V",
+      "w": "W",
+      "x": "X",
+      "y": "Y",
+      "z": "Z",
+      "catalog": "Catalog"
+    }
+  }
+}

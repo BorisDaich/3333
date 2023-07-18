@@ -1,0 +1,161 @@
+<div>
+  <h2 id="page-heading" data-cy="ScansHeading">
+    <span jhiTranslate="tambourBrowserApp.scans.home.title">Scans</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.scans.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-scans"
+        [routerLink]="['/scans/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tambourBrowserApp.scans.home.createLabel"> Create a new Scans </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="scans?.length === 0">
+    <span jhiTranslate="tambourBrowserApp.scans.home.notFound">No Scans found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="scans && scans.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="scannerId">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.scannerId">Scanner Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sequenceInBatch">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.sequenceInBatch">Sequence In Batch</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.state">State</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dE">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.dE">D E</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.createdTime">Created Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="scannedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.scannedTime">Scanned Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="inspectedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.inspectedTime">Inspected Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="modifiedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.modifiedTime">Modified Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ejectedTime">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.ejectedTime">Ejected Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="image.id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.image">Image</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="productionBatch.id">
+            <div class="d-flex">
+              <span jhiTranslate="tambourBrowserApp.scans.productionBatch">Production Batch</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let scans of scans; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/scans', scans.id, 'view']">{{ scans.id }}</a>
+          </td>
+          <td>{{ scans.scannerId }}</td>
+          <td>{{ scans.sequenceInBatch }}</td>
+          <td>{{ scans.state }}</td>
+          <td>{{ scans.dE }}</td>
+          <td>{{ scans.createdTime | formatMediumDatetime }}</td>
+          <td>{{ scans.scannedTime | formatMediumDatetime }}</td>
+          <td>{{ scans.inspectedTime | formatMediumDatetime }}</td>
+          <td>{{ scans.modifiedTime | formatMediumDatetime }}</td>
+          <td>{{ scans.ejectedTime | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="scans.image">
+              <a [routerLink]="['/images', scans.image.id, 'view']">{{ scans.image.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="scans.productionBatch">
+              <a [routerLink]="['/batches', scans.productionBatch.id, 'view']">{{ scans.productionBatch.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/scans', scans.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/scans', scans.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(scans)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

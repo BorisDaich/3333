@@ -1,0 +1,34 @@
+{
+  "tambourBrowserApp": {
+    "scans": {
+      "home": {
+        "title": "Scans",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Scans",
+        "createOrEditLabel": "Создать или отредактировать Scans",
+        "notFound": "Scans не найдено"
+      },
+      "created": "Новый Scans создан с идентификатором {{ param }}",
+      "updated": "Scans обновлен с идентификатором {{ param }}",
+      "deleted": "Scans удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Scans {{ id }}?"
+      },
+      "detail": {
+        "title": "Scans"
+      },
+      "id": "Id",
+      "scannerId": "Scanner Id",
+      "sequenceInBatch": "Sequence In Batch",
+      "state": "State",
+      "dE": "D E",
+      "createdTime": "Created Time",
+      "scannedTime": "Scanned Time",
+      "inspectedTime": "Inspected Time",
+      "modifiedTime": "Modified Time",
+      "ejectedTime": "Ejected Time",
+      "image": "Image",
+      "productionBatch": "Production Batch"
+    }
+  }
+}

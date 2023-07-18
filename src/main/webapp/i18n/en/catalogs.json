@@ -1,0 +1,30 @@
+{
+  "tambourBrowserApp": {
+    "catalogs": {
+      "home": {
+        "title": "Catalogs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Catalogs",
+        "createOrEditLabel": "Create or edit a Catalogs",
+        "notFound": "No Catalogs found"
+      },
+      "created": "A new Catalogs is created with identifier {{ param }}",
+      "updated": "A Catalogs is updated with identifier {{ param }}",
+      "deleted": "A Catalogs is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Catalogs {{ id }}?"
+      },
+      "detail": {
+        "title": "Catalogs"
+      },
+      "id": "Id",
+      "externalId": "External Id",
+      "name": "Name",
+      "version": "Version",
+      "isActive": "Is Active",
+      "createdTime": "Created Time",
+      "catalogColors": "Catalog Colors",
+      "id": "Id"
+    }
+  }
+}
