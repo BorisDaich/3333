@@ -6,7 +6,6 @@ import biz.daich.tambour.shlicht.repository.CatalogsRepository;
 import biz.daich.tambour.shlicht.service.criteria.CatalogsCriteria;
 import biz.daich.tambour.shlicht.service.dto.CatalogsDTO;
 import biz.daich.tambour.shlicht.service.mapper.CatalogsMapper;
-import jakarta.persistence.criteria.JoinType;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,21 +94,6 @@ public class CatalogsQueryService extends QueryService<Catalogs> {
             }
             if (criteria.getCreatedTime() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getCreatedTime(), Catalogs_.createdTime));
-            }
-            if (criteria.getCatalogColorsId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(
-                            criteria.getCatalogColorsId(),
-                            root -> root.join(Catalogs_.catalogColors, JoinType.LEFT).get(Catalogcolors_.id)
-                        )
-                    );
-            }
-            if (criteria.getIdId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(criteria.getIdId(), root -> root.join(Catalogs_.ids, JoinType.LEFT).get(Batches_.id))
-                    );
             }
         }
         return specification;

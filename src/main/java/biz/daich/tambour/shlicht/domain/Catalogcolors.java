@@ -154,7 +154,6 @@ public class Catalogcolors implements Serializable, Persistable<String> {
     private boolean isPersisted;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "catalogColors", "ids" }, allowSetters = true)
     private Catalogs catalog;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

@@ -94,15 +94,15 @@ public class ImagesService {
     }
 
     /**
-     *  Get all the images where Id is {@code null}.
+     *  Get all the images where Scans is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<ImagesDTO> findAllWhereIdIsNull() {
-        log.debug("Request to get all images where Id is null");
+    public List<ImagesDTO> findAllWhereScansIsNull() {
+        log.debug("Request to get all images where Scans is null");
         return StreamSupport
             .stream(imagesRepository.findAll().spliterator(), false)
-            .filter(images -> images.getId() == null)
+            .filter(images -> images.getScans() == null)
             .map(imagesMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

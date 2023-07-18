@@ -1,6 +1,5 @@
 package biz.daich.tambour.shlicht;
 
-import biz.daich.tambour.shlicht.TambourBrowserApp;
 import biz.daich.tambour.shlicht.config.AsyncSyncConfiguration;
 import biz.daich.tambour.shlicht.config.EmbeddedSQL;
 import java.lang.annotation.ElementType;

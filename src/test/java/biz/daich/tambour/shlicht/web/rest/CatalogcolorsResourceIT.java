@@ -9,7 +9,6 @@ import biz.daich.tambour.shlicht.IntegrationTest;
 import biz.daich.tambour.shlicht.domain.Catalogcolors;
 import biz.daich.tambour.shlicht.domain.Catalogs;
 import biz.daich.tambour.shlicht.repository.CatalogcolorsRepository;
-import biz.daich.tambour.shlicht.service.criteria.CatalogcolorsCriteria;
 import biz.daich.tambour.shlicht.service.dto.CatalogcolorsDTO;
 import biz.daich.tambour.shlicht.service.mapper.CatalogcolorsMapper;
 import jakarta.persistence.EntityManager;
@@ -23,7 +22,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link CatalogcolorsResource} REST controller.

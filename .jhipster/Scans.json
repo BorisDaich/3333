@@ -60,14 +60,12 @@
   "relationships": [
     {
       "otherEntityName": "images",
-      "otherEntityRelationshipName": "id",
       "relationshipName": "image",
       "relationshipSide": "left",
       "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "batches",
-      "otherEntityRelationshipName": "id",
       "relationshipName": "productionBatch",
       "relationshipSide": "left",
       "relationshipType": "many-to-one"

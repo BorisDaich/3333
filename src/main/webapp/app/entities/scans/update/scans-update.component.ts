@@ -119,7 +119,7 @@ export class ScansUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.imagesService
-      .query({ 'idId.specified': 'false' })
+      .query({ 'scansId.specified': 'false' })
       .pipe(map((res: HttpResponse<IImages[]>) => res.body ?? []))
       .pipe(map((images: IImages[]) => this.imagesService.addImagesToCollectionIfMissing<IImages>(images, this.scans?.image)))
       .subscribe((images: IImages[]) => (this.imagesCollection = images));

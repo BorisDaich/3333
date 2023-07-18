@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.domain.Persistable;
@@ -50,16 +48,6 @@ public class Catalogs implements Serializable, Persistable<String> {
 
     @Transient
     private boolean isPersisted;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "catalog")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "catalog" }, allowSetters = true)
-    private Set<Catalogcolors> catalogColors = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "colorCatalog")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "colorCatalog", "ids" }, allowSetters = true)
-    private Set<Batches> ids = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -155,68 +143,6 @@ public class Catalogs implements Serializable, Persistable<String> {
 
     public Catalogs setIsPersisted() {
         this.isPersisted = true;
-        return this;
-    }
-
-    public Set<Catalogcolors> getCatalogColors() {
-        return this.catalogColors;
-    }
-
-    public void setCatalogColors(Set<Catalogcolors> catalogcolors) {
-        if (this.catalogColors != null) {
-            this.catalogColors.forEach(i -> i.setCatalog(null));
-        }
-        if (catalogcolors != null) {
-            catalogcolors.forEach(i -> i.setCatalog(this));
-        }
-        this.catalogColors = catalogcolors;
-    }
-
-    public Catalogs catalogColors(Set<Catalogcolors> catalogcolors) {
-        this.setCatalogColors(catalogcolors);
-        return this;
-    }
-
-    public Catalogs addCatalogColors(Catalogcolors catalogcolors) {
-        this.catalogColors.add(catalogcolors);
-        catalogcolors.setCatalog(this);
-        return this;
-    }
-
-    public Catalogs removeCatalogColors(Catalogcolors catalogcolors) {
-        this.catalogColors.remove(catalogcolors);
-        catalogcolors.setCatalog(null);
-        return this;
-    }
-
-    public Set<Batches> getIds() {
-        return this.ids;
-    }
-
-    public void setIds(Set<Batches> batches) {
-        if (this.ids != null) {
-            this.ids.forEach(i -> i.setColorCatalog(null));
-        }
-        if (batches != null) {
-            batches.forEach(i -> i.setColorCatalog(this));
-        }
-        this.ids = batches;
-    }
-
-    public Catalogs ids(Set<Batches> batches) {
-        this.setIds(batches);
-        return this;
-    }
-
-    public Catalogs addId(Batches batches) {
-        this.ids.add(batches);
-        batches.setColorCatalog(this);
-        return this;
-    }
-
-    public Catalogs removeId(Batches batches) {
-        this.ids.remove(batches);
-        batches.setColorCatalog(null);
         return this;
     }
 

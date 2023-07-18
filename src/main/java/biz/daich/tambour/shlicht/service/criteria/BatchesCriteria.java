@@ -133,8 +133,6 @@ public class BatchesCriteria implements Serializable, Criteria {
 
     private StringFilter colorCatalogId;
 
-    private StringFilter idId;
-
     private Boolean distinct;
 
     public BatchesCriteria() {}
@@ -196,7 +194,6 @@ public class BatchesCriteria implements Serializable, Criteria {
         this.suspendedTime = other.suspendedTime == null ? null : other.suspendedTime.copy();
         this.finishedTime = other.finishedTime == null ? null : other.finishedTime.copy();
         this.colorCatalogId = other.colorCatalogId == null ? null : other.colorCatalogId.copy();
-        this.idId = other.idId == null ? null : other.idId.copy();
         this.distinct = other.distinct;
     }
 
@@ -1045,21 +1042,6 @@ public class BatchesCriteria implements Serializable, Criteria {
         this.colorCatalogId = colorCatalogId;
     }
 
-    public StringFilter getIdId() {
-        return idId;
-    }
-
-    public StringFilter idId() {
-        if (idId == null) {
-            idId = new StringFilter();
-        }
-        return idId;
-    }
-
-    public void setIdId(StringFilter idId) {
-        this.idId = idId;
-    }
-
     public Boolean getDistinct() {
         return distinct;
     }
@@ -1134,7 +1116,6 @@ public class BatchesCriteria implements Serializable, Criteria {
             Objects.equals(suspendedTime, that.suspendedTime) &&
             Objects.equals(finishedTime, that.finishedTime) &&
             Objects.equals(colorCatalogId, that.colorCatalogId) &&
-            Objects.equals(idId, that.idId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -1198,7 +1179,6 @@ public class BatchesCriteria implements Serializable, Criteria {
             suspendedTime,
             finishedTime,
             colorCatalogId,
-            idId,
             distinct
         );
     }
@@ -1263,7 +1243,6 @@ public class BatchesCriteria implements Serializable, Criteria {
             (suspendedTime != null ? "suspendedTime=" + suspendedTime + ", " : "") +
             (finishedTime != null ? "finishedTime=" + finishedTime + ", " : "") +
             (colorCatalogId != null ? "colorCatalogId=" + colorCatalogId + ", " : "") +
-            (idId != null ? "idId=" + idId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

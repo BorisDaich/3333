@@ -27,7 +27,7 @@ public class ImagesCriteria implements Serializable, Criteria {
 
     private IntegerFilter rawHeight;
 
-    private StringFilter idId;
+    private StringFilter scansId;
 
     private Boolean distinct;
 
@@ -37,7 +37,7 @@ public class ImagesCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.rawWidth = other.rawWidth == null ? null : other.rawWidth.copy();
         this.rawHeight = other.rawHeight == null ? null : other.rawHeight.copy();
-        this.idId = other.idId == null ? null : other.idId.copy();
+        this.scansId = other.scansId == null ? null : other.scansId.copy();
         this.distinct = other.distinct;
     }
 
@@ -91,19 +91,19 @@ public class ImagesCriteria implements Serializable, Criteria {
         this.rawHeight = rawHeight;
     }
 
-    public StringFilter getIdId() {
-        return idId;
+    public StringFilter getScansId() {
+        return scansId;
     }
 
-    public StringFilter idId() {
-        if (idId == null) {
-            idId = new StringFilter();
+    public StringFilter scansId() {
+        if (scansId == null) {
+            scansId = new StringFilter();
         }
-        return idId;
+        return scansId;
     }
 
-    public void setIdId(StringFilter idId) {
-        this.idId = idId;
+    public void setScansId(StringFilter scansId) {
+        this.scansId = scansId;
     }
 
     public Boolean getDistinct() {
@@ -127,14 +127,14 @@ public class ImagesCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(rawWidth, that.rawWidth) &&
             Objects.equals(rawHeight, that.rawHeight) &&
-            Objects.equals(idId, that.idId) &&
+            Objects.equals(scansId, that.scansId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, rawWidth, rawHeight, idId, distinct);
+        return Objects.hash(id, rawWidth, rawHeight, scansId, distinct);
     }
 
     // prettier-ignore
@@ -144,7 +144,7 @@ public class ImagesCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (rawWidth != null ? "rawWidth=" + rawWidth + ", " : "") +
             (rawHeight != null ? "rawHeight=" + rawHeight + ", " : "") +
-            (idId != null ? "idId=" + idId + ", " : "") +
+            (scansId != null ? "scansId=" + scansId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

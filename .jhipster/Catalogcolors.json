@@ -175,7 +175,6 @@
   "relationships": [
     {
       "otherEntityName": "catalogs",
-      "otherEntityRelationshipName": "catalogColors",
       "relationshipName": "catalog",
       "relationshipSide": "left",
       "relationshipType": "many-to-one"

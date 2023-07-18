@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.domain.Persistable;
@@ -270,13 +268,7 @@ public class Batches implements Serializable, Persistable<String> {
     private boolean isPersisted;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "catalogColors", "ids" }, allowSetters = true)
     private Catalogs colorCatalog;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productionBatch")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "image", "productionBatch" }, allowSetters = true)
-    private Set<Scans> ids = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -1113,37 +1105,6 @@ public class Batches implements Serializable, Persistable<String> {
 
     public Batches colorCatalog(Catalogs catalogs) {
         this.setColorCatalog(catalogs);
-        return this;
-    }
-
-    public Set<Scans> getIds() {
-        return this.ids;
-    }
-
-    public void setIds(Set<Scans> scans) {
-        if (this.ids != null) {
-            this.ids.forEach(i -> i.setProductionBatch(null));
-        }
-        if (scans != null) {
-            scans.forEach(i -> i.setProductionBatch(this));
-        }
-        this.ids = scans;
-    }
-
-    public Batches ids(Set<Scans> scans) {
-        this.setIds(scans);
-        return this;
-    }
-
-    public Batches addId(Scans scans) {
-        this.ids.add(scans);
-        scans.setProductionBatch(this);
-        return this;
-    }
-
-    public Batches removeId(Scans scans) {
-        this.ids.remove(scans);
-        scans.setProductionBatch(null);
         return this;
     }
 

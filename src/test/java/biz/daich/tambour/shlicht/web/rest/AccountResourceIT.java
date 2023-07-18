@@ -14,7 +14,6 @@ import biz.daich.tambour.shlicht.security.AuthoritiesConstants;
 import biz.daich.tambour.shlicht.service.UserService;
 import biz.daich.tambour.shlicht.service.dto.AdminUserDTO;
 import biz.daich.tambour.shlicht.service.dto.PasswordChangeDTO;
-import biz.daich.tambour.shlicht.service.dto.UserDTO;
 import biz.daich.tambour.shlicht.web.rest.vm.KeyAndPasswordVM;
 import biz.daich.tambour.shlicht.web.rest.vm.ManagedUserVM;
 import java.time.Instant;

@@ -55,7 +55,7 @@ public class Images implements Serializable, Persistable<String> {
 
     @JsonIgnoreProperties(value = { "image", "productionBatch" }, allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "image")
-    private Scans id;
+    private Scans scans;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -180,22 +180,22 @@ public class Images implements Serializable, Persistable<String> {
         return this;
     }
 
-    public Scans getId() {
-        return this.id;
+    public Scans getScans() {
+        return this.scans;
     }
 
-    public void setId(Scans scans) {
-        if (this.id != null) {
-            this.id.setImage(null);
+    public void setScans(Scans scans) {
+        if (this.scans != null) {
+            this.scans.setImage(null);
         }
         if (scans != null) {
             scans.setImage(this);
         }
-        this.id = scans;
+        this.scans = scans;
     }
 
-    public Images id(Scans scans) {
-        this.setId(scans);
+    public Images scans(Scans scans) {
+        this.setScans(scans);
         return this;
     }
 

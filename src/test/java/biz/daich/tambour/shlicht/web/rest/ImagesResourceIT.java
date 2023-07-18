@@ -9,7 +9,6 @@ import biz.daich.tambour.shlicht.IntegrationTest;
 import biz.daich.tambour.shlicht.domain.Images;
 import biz.daich.tambour.shlicht.domain.Scans;
 import biz.daich.tambour.shlicht.repository.ImagesRepository;
-import biz.daich.tambour.shlicht.service.criteria.ImagesCriteria;
 import biz.daich.tambour.shlicht.service.dto.ImagesDTO;
 import biz.daich.tambour.shlicht.service.mapper.ImagesMapper;
 import jakarta.persistence.EntityManager;
@@ -394,25 +393,25 @@ class ImagesResourceIT {
 
     @Test
     @Transactional
-    void getAllImagesByIdIsEqualToSomething() throws Exception {
-        Scans id;
+    void getAllImagesByScansIsEqualToSomething() throws Exception {
+        Scans scans;
         if (TestUtil.findAll(em, Scans.class).isEmpty()) {
             imagesRepository.saveAndFlush(images);
-            id = ScansResourceIT.createEntity(em);
+            scans = ScansResourceIT.createEntity(em);
         } else {
-            id = TestUtil.findAll(em, Scans.class).get(0);
+            scans = TestUtil.findAll(em, Scans.class).get(0);
         }
-        em.persist(id);
+        em.persist(scans);
         em.flush();
-        images.setId(id);
-        id.setImage(images);
+        images.setScans(scans);
+        scans.setImage(images);
         imagesRepository.saveAndFlush(images);
-        String idId = id.getId();
-        // Get all the imagesList where id equals to idId
-        defaultImagesShouldBeFound("idId.equals=" + idId);
+        String scansId = scans.getId();
+        // Get all the imagesList where scans equals to scansId
+        defaultImagesShouldBeFound("scansId.equals=" + scansId);
 
-        // Get all the imagesList where id equals to "invalid-id"
-        defaultImagesShouldNotBeFound("idId.equals=" + "invalid-id");
+        // Get all the imagesList where scans equals to "invalid-id"
+        defaultImagesShouldNotBeFound("scansId.equals=" + "invalid-id");
     }
 
     /**

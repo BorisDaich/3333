@@ -215,13 +215,13 @@ entity Scans(scans) {
 //}
 
 relationship ManyToOne {
-    Catalogcolors{Catalog} to Catalogs{CatalogColors}	
-	Batches{ColorCatalog} to Catalogs{Id}
-	Scans{ProductionBatch} to Batches{Id}
+    Catalogcolors{Catalog} to Catalogs	
+	Batches{ColorCatalog} to Catalogs
+	Scans{ProductionBatch} to Batches
 }
 
 relationship OneToOne {
-    Scans{Image} to Images{Id}
+    Scans{Image} to Images
 }
 
 //relationship ManyToOne {

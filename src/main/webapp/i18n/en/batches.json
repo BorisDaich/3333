@@ -79,8 +79,7 @@
       "suspendedTime": "Suspended Time",
       "finishedTime": "Finished Time",
       "original": "Original",
-      "colorCatalog": "Color Catalog",
-      "id": "Id"
+      "colorCatalog": "Color Catalog"
     }
   }
 }

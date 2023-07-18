@@ -6,11 +6,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import biz.daich.tambour.shlicht.IntegrationTest;
-import biz.daich.tambour.shlicht.domain.Batches;
-import biz.daich.tambour.shlicht.domain.Catalogcolors;
 import biz.daich.tambour.shlicht.domain.Catalogs;
 import biz.daich.tambour.shlicht.repository.CatalogsRepository;
-import biz.daich.tambour.shlicht.service.criteria.CatalogsCriteria;
 import biz.daich.tambour.shlicht.service.dto.CatalogsDTO;
 import biz.daich.tambour.shlicht.service.mapper.CatalogsMapper;
 import jakarta.persistence.EntityManager;
@@ -26,7 +23,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link CatalogsResource} REST controller.
@@ -291,50 +287,6 @@ class CatalogsResourceIT {
 
         // Get all the catalogsList where createdTime is null
         defaultCatalogsShouldNotBeFound("createdTime.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllCatalogsByCatalogColorsIsEqualToSomething() throws Exception {
-        Catalogcolors catalogColors;
-        if (TestUtil.findAll(em, Catalogcolors.class).isEmpty()) {
-            catalogsRepository.saveAndFlush(catalogs);
-            catalogColors = CatalogcolorsResourceIT.createEntity(em);
-        } else {
-            catalogColors = TestUtil.findAll(em, Catalogcolors.class).get(0);
-        }
-        em.persist(catalogColors);
-        em.flush();
-        catalogs.addCatalogColors(catalogColors);
-        catalogsRepository.saveAndFlush(catalogs);
-        String catalogColorsId = catalogColors.getId();
-        // Get all the catalogsList where catalogColors equals to catalogColorsId
-        defaultCatalogsShouldBeFound("catalogColorsId.equals=" + catalogColorsId);
-
-        // Get all the catalogsList where catalogColors equals to "invalid-id"
-        defaultCatalogsShouldNotBeFound("catalogColorsId.equals=" + "invalid-id");
-    }
-
-    @Test
-    @Transactional
-    void getAllCatalogsByIdIsEqualToSomething() throws Exception {
-        Batches id;
-        if (TestUtil.findAll(em, Batches.class).isEmpty()) {
-            catalogsRepository.saveAndFlush(catalogs);
-            id = BatchesResourceIT.createEntity(em);
-        } else {
-            id = TestUtil.findAll(em, Batches.class).get(0);
-        }
-        em.persist(id);
-        em.flush();
-        catalogs.addId(id);
-        catalogsRepository.saveAndFlush(catalogs);
-        String idId = id.getId();
-        // Get all the catalogsList where id equals to idId
-        defaultCatalogsShouldBeFound("idId.equals=" + idId);
-
-        // Get all the catalogsList where id equals to "invalid-id"
-        defaultCatalogsShouldNotBeFound("idId.equals=" + "invalid-id");
     }
 
     /**

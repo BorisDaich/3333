@@ -8,9 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import biz.daich.tambour.shlicht.IntegrationTest;
 import biz.daich.tambour.shlicht.domain.Batches;
 import biz.daich.tambour.shlicht.domain.Catalogs;
-import biz.daich.tambour.shlicht.domain.Scans;
 import biz.daich.tambour.shlicht.repository.BatchesRepository;
-import biz.daich.tambour.shlicht.service.criteria.BatchesCriteria;
 import biz.daich.tambour.shlicht.service.dto.BatchesDTO;
 import biz.daich.tambour.shlicht.service.mapper.BatchesMapper;
 import jakarta.persistence.EntityManager;
@@ -26,7 +24,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link BatchesResource} REST controller.
@@ -5889,28 +5886,6 @@ class BatchesResourceIT {
 
         // Get all the batchesList where colorCatalog equals to "invalid-id"
         defaultBatchesShouldNotBeFound("colorCatalogId.equals=" + "invalid-id");
-    }
-
-    @Test
-    @Transactional
-    void getAllBatchesByIdIsEqualToSomething() throws Exception {
-        Scans id;
-        if (TestUtil.findAll(em, Scans.class).isEmpty()) {
-            batchesRepository.saveAndFlush(batches);
-            id = ScansResourceIT.createEntity(em);
-        } else {
-            id = TestUtil.findAll(em, Scans.class).get(0);
-        }
-        em.persist(id);
-        em.flush();
-        batches.addId(id);
-        batchesRepository.saveAndFlush(batches);
-        String idId = id.getId();
-        // Get all the batchesList where id equals to idId
-        defaultBatchesShouldBeFound("idId.equals=" + idId);
-
-        // Get all the batchesList where id equals to "invalid-id"
-        defaultBatchesShouldNotBeFound("idId.equals=" + "invalid-id");
     }
 
     /**

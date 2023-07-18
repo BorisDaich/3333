@@ -96,9 +96,11 @@ public class ImagesQueryService extends QueryService<Images> {
             if (criteria.getRawHeight() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getRawHeight(), Images_.rawHeight));
             }
-            if (criteria.getIdId() != null) {
+            if (criteria.getScansId() != null) {
                 specification =
-                    specification.and(buildSpecification(criteria.getIdId(), root -> root.join(Images_.id, JoinType.LEFT).get(Scans_.id)));
+                    specification.and(
+                        buildSpecification(criteria.getScansId(), root -> root.join(Images_.scans, JoinType.LEFT).get(Scans_.id))
+                    );
             }
         }
         return specification;

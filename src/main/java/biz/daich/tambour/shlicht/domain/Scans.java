@@ -63,13 +63,13 @@ public class Scans implements Serializable, Persistable<String> {
     @Transient
     private boolean isPersisted;
 
-    @JsonIgnoreProperties(value = { "id" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "scans" }, allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(unique = true)
     private Images image;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "colorCatalog", "ids" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "colorCatalog" }, allowSetters = true)
     private Batches productionBatch;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

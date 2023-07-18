@@ -323,17 +323,9 @@
   "relationships": [
     {
       "otherEntityName": "catalogs",
-      "otherEntityRelationshipName": "id",
       "relationshipName": "colorCatalog",
       "relationshipSide": "left",
       "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "scans",
-      "otherEntityRelationshipName": "productionBatch",
-      "relationshipName": "id",
-      "relationshipSide": "right",
-      "relationshipType": "one-to-many"
     }
   ],
   "searchEngine": "no",

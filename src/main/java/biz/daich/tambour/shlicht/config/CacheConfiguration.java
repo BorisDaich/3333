@@ -47,11 +47,8 @@ public class CacheConfiguration {
             createCache(cm, biz.daich.tambour.shlicht.domain.Authority.class.getName());
             createCache(cm, biz.daich.tambour.shlicht.domain.User.class.getName() + ".authorities");
             createCache(cm, biz.daich.tambour.shlicht.domain.Batches.class.getName());
-            createCache(cm, biz.daich.tambour.shlicht.domain.Batches.class.getName() + ".ids");
             createCache(cm, biz.daich.tambour.shlicht.domain.Catalogcolors.class.getName());
             createCache(cm, biz.daich.tambour.shlicht.domain.Catalogs.class.getName());
-            createCache(cm, biz.daich.tambour.shlicht.domain.Catalogs.class.getName() + ".catalogColors");
-            createCache(cm, biz.daich.tambour.shlicht.domain.Catalogs.class.getName() + ".ids");
             createCache(cm, biz.daich.tambour.shlicht.domain.Images.class.getName());
             createCache(cm, biz.daich.tambour.shlicht.domain.Scans.class.getName());
             // jhipster-needle-caffeine-add-entry

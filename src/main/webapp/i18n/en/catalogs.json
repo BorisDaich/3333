@@ -22,9 +22,7 @@
       "name": "Name",
       "version": "Version",
       "isActive": "Is Active",
-      "createdTime": "Created Time",
-      "catalogColors": "Catalog Colors",
-      "id": "Id"
+      "createdTime": "Created Time"
     }
   }
 }

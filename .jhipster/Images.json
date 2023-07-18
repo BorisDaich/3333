@@ -37,15 +37,7 @@
   "jpaMetamodelFiltering": true,
   "name": "Images",
   "pagination": "infinite-scroll",
-  "relationships": [
-    {
-      "otherEntityName": "scans",
-      "otherEntityRelationshipName": "image",
-      "relationshipName": "id",
-      "relationshipSide": "right",
-      "relationshipType": "one-to-one"
-    }
-  ],
+  "relationships": [],
   "searchEngine": "no",
   "service": "serviceClass"
 }

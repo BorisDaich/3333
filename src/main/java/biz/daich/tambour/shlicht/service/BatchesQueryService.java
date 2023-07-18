@@ -267,12 +267,6 @@ public class BatchesQueryService extends QueryService<Batches> {
                         )
                     );
             }
-            if (criteria.getIdId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(criteria.getIdId(), root -> root.join(Batches_.ids, JoinType.LEFT).get(Scans_.id))
-                    );
-            }
         }
         return specification;
     }

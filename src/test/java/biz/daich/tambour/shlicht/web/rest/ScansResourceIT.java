@@ -10,7 +10,6 @@ import biz.daich.tambour.shlicht.domain.Batches;
 import biz.daich.tambour.shlicht.domain.Images;
 import biz.daich.tambour.shlicht.domain.Scans;
 import biz.daich.tambour.shlicht.repository.ScansRepository;
-import biz.daich.tambour.shlicht.service.criteria.ScansCriteria;
 import biz.daich.tambour.shlicht.service.dto.ScansDTO;
 import biz.daich.tambour.shlicht.service.mapper.ScansMapper;
 import jakarta.persistence.EntityManager;
@@ -26,7 +25,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link ScansResource} REST controller.

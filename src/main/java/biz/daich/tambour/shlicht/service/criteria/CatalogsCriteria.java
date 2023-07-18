@@ -27,10 +27,6 @@ public class CatalogsCriteria implements Serializable, Criteria {
 
     private InstantFilter createdTime;
 
-    private StringFilter catalogColorsId;
-
-    private StringFilter idId;
-
     private Boolean distinct;
 
     public CatalogsCriteria() {}
@@ -39,8 +35,6 @@ public class CatalogsCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.isActive = other.isActive == null ? null : other.isActive.copy();
         this.createdTime = other.createdTime == null ? null : other.createdTime.copy();
-        this.catalogColorsId = other.catalogColorsId == null ? null : other.catalogColorsId.copy();
-        this.idId = other.idId == null ? null : other.idId.copy();
         this.distinct = other.distinct;
     }
 
@@ -94,36 +88,6 @@ public class CatalogsCriteria implements Serializable, Criteria {
         this.createdTime = createdTime;
     }
 
-    public StringFilter getCatalogColorsId() {
-        return catalogColorsId;
-    }
-
-    public StringFilter catalogColorsId() {
-        if (catalogColorsId == null) {
-            catalogColorsId = new StringFilter();
-        }
-        return catalogColorsId;
-    }
-
-    public void setCatalogColorsId(StringFilter catalogColorsId) {
-        this.catalogColorsId = catalogColorsId;
-    }
-
-    public StringFilter getIdId() {
-        return idId;
-    }
-
-    public StringFilter idId() {
-        if (idId == null) {
-            idId = new StringFilter();
-        }
-        return idId;
-    }
-
-    public void setIdId(StringFilter idId) {
-        this.idId = idId;
-    }
-
     public Boolean getDistinct() {
         return distinct;
     }
@@ -145,15 +109,13 @@ public class CatalogsCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(isActive, that.isActive) &&
             Objects.equals(createdTime, that.createdTime) &&
-            Objects.equals(catalogColorsId, that.catalogColorsId) &&
-            Objects.equals(idId, that.idId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, isActive, createdTime, catalogColorsId, idId, distinct);
+        return Objects.hash(id, isActive, createdTime, distinct);
     }
 
     // prettier-ignore
@@ -163,8 +125,6 @@ public class CatalogsCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (isActive != null ? "isActive=" + isActive + ", " : "") +
             (createdTime != null ? "createdTime=" + createdTime + ", " : "") +
-            (catalogColorsId != null ? "catalogColorsId=" + catalogColorsId + ", " : "") +
-            (idId != null ? "idId=" + idId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }
